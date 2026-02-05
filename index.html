@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MUIN Guard - AI-powered security monitoring for your browser. Detects suspicious prompts, protects sensitive data, alerts on risky AI interactions.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="MUIN Guard - AI Security Monitoring">
+    <meta property="og:description" content="AI-powered security monitoring for your browser. Detects suspicious prompts, protects sensitive data, alerts on risky AI interactions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://guard.muin.company">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>MUIN Guard - AI Security Monitoring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #e8e8e8;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 18px 0;
+            background: rgba(10, 10, 10, 0.9);
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #e8e8e8;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 110px 24px 70px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 32px;
+            width: fit-content;
+        }
+
+        .status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #f59e0b;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .subhead {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: #999;
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+
+        .description {
+            max-width: 580px;
+            font-size: 1.05rem;
+            color: #777;
+            line-height: 1.65;
+            margin-bottom: 44px;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 10px;
+            max-width: 460px;
+            margin-bottom: 14px;
+        }
+
+        .signup-form input[type="email"] {
+            flex: 1;
+            padding: 14px 18px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            color: #e8e8e8;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .signup-form input[type="email"]:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        .signup-form input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            background: #fff;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background: #e0e0e0;
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .form-success {
+            display: none;
+            padding: 14px 20px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            color: #10b981;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            padding: 100px 24px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #666;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 56px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            max-width: 1100px;
+        }
+
+        .feature-card {
+            padding: 28px;
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            color: #777;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            padding: 100px 24px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .cta-content {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: #777;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            margin-bottom: 36px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e8e8e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 14px 24px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+        }
+
+        .github-link:hover {
+            border-color: #333;
+            background: #151515;
+        }
+
+        footer {
+            padding: 50px 24px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-text {
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: #e8e8e8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 18px;
+            }
+
+            .signup-form {
+                flex-direction: column;
+            }
+
+            .signup-form input[type="email"],
+            .signup-form .btn {
+                width: 100%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links a:not(.btn) {
+                display: none;
+            }
+
+            header {
+                padding: 14px 0;
+            }
+
+            .hero {
+                padding: 90px 20px 50px;
+            }
+
+            .feature-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="https://muin.company" class="logo">MUIN</a>
+            <div class="nav-links">
+                <a href="https://muin.company">Home</a>
+                <a href="https://blog.muin.company">Blog</a>
+                <a href="#notify" class="btn">Get Notified</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="status">Pending Chrome Web Store Review</div>
+            <h1>MUIN Guard</h1>
+            <p class="subhead">AI-powered security monitoring for your browser</p>
+            <p class="description">
+                Detects suspicious prompts, protects your sensitive data, and alerts you to risky AI interactions. 
+                Security monitoring that works silently in the background, keeping you safe without getting in your way.
+            </p>
+            <form id="notify" class="signup-form" action="https://formspree.io/f/xpwzgkvq" method="POST">
+                <input type="hidden" name="product" value="MUIN Guard">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Get Notified</button>
+            </form>
+            <p class="form-note">We'll let you know when MUIN Guard is available on the Chrome Web Store.</p>
+            <div class="form-success" id="formSuccess">
+                You're on the list. We'll notify you when it's ready.
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <p class="section-label">Features</p>
+                <h2 class="section-title">Security Monitoring That Actually Works</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Suspicious Prompt Detection</h3>
+                        <p>Automatically detects when AI tools receive suspicious or malicious prompts. Get instant alerts before sensitive information is compromised.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Data Protection</h3>
+                        <p>Monitors AI interactions for exposure of sensitive data like API keys, passwords, and personal information. Stops leaks before they happen.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Real-Time Alerts</h3>
+                        <p>Instant notifications when risky AI interactions are detected. Know what's happening in real-time, not after the damage is done.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Privacy First</h3>
+                        <p>All monitoring happens locally in your browser. No data sent to external servers. Your security, your control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Open Source & Transparent</h2>
+                    <p>
+                        MUIN Guard is open source. Review the code, suggest improvements, or contribute features. 
+                        Security tools should be transparent—you deserve to know exactly how they work.
+                    </p>
+                    <a href="https://github.com/muin-company/guard" class="github-link">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2026 MUIN. Run by AI, for humans.</p>
+                <div class="footer-links">
+                    <a href="https://muin.company">MUIN</a>
+                    <a href="https://github.com/muin-company/guard">GitHub</a>
+                    <a href="https://x.com/muincompany">X</a>
+                    <a href="mailto:hello@muin.company">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('notify');
+        const formSuccess = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.querySelector('.form-note').style.display = 'none';
+                    formSuccess.style.display = 'block';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
